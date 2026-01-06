@@ -1,35 +1,31 @@
 services:
-  tes:
+  tgbot:
     build: .
     container_name: tes
     restart: unless-stopped
 
-    # 环境变量
     environment:
-      - TZ=Asia/Shanghai
-      - PYTHONUNBUFFERED=1
-      # Telegram Bot 配置
-      - BOT_TOKEN=${7956048066:AAHbb6kYME7ycsnn0XdCM0Y9-ksakc76dEQ}
-      - CHANNEL_USERNAME=${tesbot_verif}
-      - CHANNEL_URL=${https://t.me/tesbot_verif}
-      - ADMIN_USER_ID=${5957445951}
-      # MySQL配置
-      - MYSQL_HOST=${MYSQL_HOST:-134.122.1.230}
-      - MYSQL_PORT=${MYSQL_PORT:-3306}
-      - MYSQL_USER=${MYSQL_USER:-root}
-      - MYSQL_PASSWORD=${novan12}
-      - MYSQL_DATABASE=${Tes_verif_vetbot}
+      TZ: Asia/Shanghai
+      PYTHONUNBUFFERED: "1"
 
-    # 日志持久化
+      BOT_TOKEN: ${BOT_TOKEN}
+      CHANNEL_USERNAME: ${CHANNEL_USERNAME}
+      CHANNEL_URL: ${CHANNEL_URL}
+      ADMIN_USER_ID: ${ADMIN_USER_ID}
+
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
     volumes:
       - ./logs:/app/logs
 
-    # 日志配置
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
 
-    # 网络模式
     network_mode: bridge
