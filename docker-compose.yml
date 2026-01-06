@@ -1,7 +1,7 @@
 services:
   tgbot:
     build: .
-    container_name: sheerid-tgbot
+    container_name: tes
     restart: unless-stopped
 
     # 环境变量
